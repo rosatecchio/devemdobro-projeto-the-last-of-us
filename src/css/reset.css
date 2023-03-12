@@ -1,0 +1,17 @@
+/*para resetar os estilos que já vem por padrão no navegador*/
+
+/*o * seleciona todas as tags*/
+
+*{ 
+    margin: 0; 
+    padding: 0;
+    box-sizing: border-box; /*para poder trabalhar melhor o tam anho das caixas. É bom usar sempre ele*/
+}
+
+ul{
+    list-style: none; /*vai tirar as bolinhas dos itens*/
+}
+
+a{
+    text-decoration: none;
+}

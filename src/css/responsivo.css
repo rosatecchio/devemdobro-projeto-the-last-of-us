@@ -1,0 +1,50 @@
+/*arquivo para criar regras para adaptar o site para várias resoluções: celular, notebook, monitores de vários tamanhos*/
+
+@media (max-width: 1280px){ /*regra para telas até 1280px*/
+    body{
+        padding: 0 40px;
+    }
+}
+
+@media (max-width: 768px){ /*largura de tablet*/
+    .informacoes{
+        display: flex;
+        flex-direction: column;
+        align-items: center; /*quando ficar muito pequeno ele vai alinhar todos os itens e centalizar para facilitar a leitura*/
+    }
+
+    .informacoes .descricao{
+        width: 60%; /*aumentar um pouquinho a largura*/
+        text-align: center; /*centraliza o texto*/
+    }
+}
+
+@media (max-width: 425px){ /*para telas de celular*/
+    .informacoes .logo{
+        max-width: 300px;
+    }
+
+    .informacoes .descricao{
+        width: 100%;
+    }
+
+    .menu-lateral{
+        position: static; /*vai tirar ele da posição fixed e colocar na posição padrão*/
+        min-height: auto;
+        width: 100%;
+        margin-top: 50px;
+    }
+
+    .menu-lateral ul{
+        flex-direction: row;
+    }
+
+    .conteudo{
+        min-height: 70vh;
+        gap: 50px; /*para deixar um espaçamento uniforme e evital o scroll*/
+    }
+
+    body{
+        padding: 40px;
+    }
+}

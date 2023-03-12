@@ -1,0 +1,112 @@
+body{
+    font-family: 'Poppins', sans-serif;
+    max-width: 1280px; /*em telas menores o texto vai se adaptando automaticamente. Se colocasse um tamanho fixo, ele não ia se adptar*/
+    margin: 0 auto; /*0 em cima e em baixo e distribuído igualmente a direita e a esquerda(centralizado)*/
+}
+
+main:after { /*criação de um pseudo elemento*/
+    content: '';
+    min-height: 100vh;
+    width: 100vw;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: linear-gradient(90deg, rgba(0, 0, 0, 1) 10%, rgba(0, 0, 0, 0.05926120448179273) 50%, rgba(0, 0, 0, 1) 90%); /*para criar uma máscara na imagem, com as bordas mais escuras. O gradiente pode ser pesquisado em cssgradiente.io*/
+    z-index: -1; /*para ficar por baixo do texto*/
+}
+
+.conteudo {
+    display: flex; /* serve para alinhar elementos verticalmente na página. Atenção: para alinhar os filhos, precisa colocar a propriedade flex conteiner no pai. Como as classes 'informacoes e botoes-carrosel' estão dentro de 'conteudo', é nessa que tem que colcoar o flex */
+    flex-direction: column; /*por padrão o flex é 'row', ou seja, ele já alinha os elementos em linha. Se quiser que fique um embaixo do outro, precisa colocar o 'column'*/
+    min-height: 100vh; /*viewport height (altura da janela de exibição). 100vh ele vaai acupar 100% da tela do usuário*/
+    justify-content: space-evenly; /*o center vai centralizar verticalmente mas vai deixar os filhos juntos. O 'space-evenly' vai dar um espaço uniforme entre eles*/
+}
+
+.informacoes .logo{ /*para estilizar o elemento com classe 'logo' dentro da classe 'informacoes'. Também poderia utilizar só o '.logo', porém ele poderia pegar eventualmente outra classe que tivesse o mesmo nome. Assim fica mais específico. É melhor*/
+    max-width: 350px; /*quando a gente define a largura ele já adapta a altura, por isso não precisa definir ela também*/
+    filter: invert(1); /*vai inverter a cor de preto para branco*/
+    margin-bottom: 80px;
+}
+
+.informacoes .descricao{
+    width: 49%; /*porcentagem em relação ao pai*/
+    font-size: 24px;
+    color: #ffffff;
+    line-height: 30px; /*espaçamento entre as linhas*/
+}
+
+.botoes-carrosel{
+    display: flex;
+    justify-content: center;
+    gap: 20px; /*vai dar um espaçamento entre os elementos*/
+}
+
+.botoes-carrosel .botao{
+    background-color: #ffffff;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    cursor: pointer; /*para que fique a mãozinha quando passar o cursor*/
+    border-color: #ffffff;
+}
+
+.botoes-carrosel .botao.selecionado { /*quando eu não dou espaço eu estou dizendo que eu quero estilizar o elemento que possua essas duas classes*/
+    background-color: #1d8346;
+}
+
+.menu-lateral{
+    position: fixed; /*tira o elemento do fluxo normal e fixa ele em uma posição. Precisa especificar a posição (top/bottom) (right/left)*/
+    top: 0; /*máximo pra cima*/
+    right: 0; /*máximo pra direita*/
+    width: 80px;
+    display: flex;
+    justify-content: center; /*para centralizar horizontalmente dentro da div. Como o padrão é 'row', ele alinha horizontalmente. Lá em cima como usamos o 'column', ele alinhou verticalmente*/
+    align-items: center; /*para alinhar verticalmente*/
+    min-height: 100vh;
+}
+
+.menu-lateral ul{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.menu-lateral .icone{
+    width: 30px;
+    filter: invert(1);
+    transition: 0.3s ease-in-out; /*é uma animação. Quando passar o mouse em cima, ele vai aumentar o desenho de uma forma mais suave (0,3 segundos) e não tão seca*/
+}
+
+.menu-lateral .icone:hover { /*o hover é para quando passar o mouse em cima*/
+    transform: scale(1.2); /*aumenta o tamanho*/
+}
+
+.carrossel {
+    position: fixed; /*vai deixar um conteúdo por cima do outro*/
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: -1; /*para ficar por baixo do outro conteúdo. Se fosse por cima seria 1. O eixo z é o eixo da profundidade*/
+}
+
+.carrossel .imagem{
+    width: 100%;
+    height: 100vh;
+    object-fit: cover; /*para cobrir todo o tamanho da div. Vai ajustar a imagem na tela sem distorcer*/
+    display: none; /*para esconder as imagens*/
+    animation: mudarImagem 0.7s; /*vai chamar a função keyframes*/
+}
+
+.carrossel .imagem.ativa{
+    display: block; /*para mostrar a imagem*/
+}
+
+@keyframes mudarImagem{ /*função de animação*/
+    from{
+        opacity: 0.85;
+    }
+    to{
+        opacity: 1;
+    }
+}
